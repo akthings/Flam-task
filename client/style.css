@@ -1,0 +1,152 @@
+/* client/style.css */
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #ecf0f1;
+    --background-color: #f4f6f9;
+    --toolbar-color: #ffffff;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "main aside";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 1fr 250px;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Toolbar --- */
+.toolbar {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background-color: var(--toolbar-color);
+    box-shadow: var(--shadow);
+    z-index: 10;
+}
+
+.tool-group {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    padding: 5px 0;
+}
+
+.tool-button {
+    background: none;
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    margin: 0 2px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.tool-button:hover:not(.active) {
+    background-color: var(--secondary-color);
+}
+
+.tool-button.active {
+    border-color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+#color-picker {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    border-radius: 4px;
+}
+
+/* --- Main Canvas Area --- */
+.canvas-container {
+    grid-area: main;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    touch-action: none; /* Crucial for mobile drawing */
+}
+
+#drawing-canvas {
+    display: block;
+    /* Canvas will be sized by JS to fill container */
+}
+
+#cursor-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow mouse events to pass through to canvas */
+    z-index: 5;
+}
+
+/* --- User Indicator (Cursor) --- */
+.cursor-indicator {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s ease-out; /* Smooth cursor movement */
+    z-index: 6;
+}
+
+/* --- User List Aside --- */
+#user-list {
+    grid-area: aside;
+    padding: 20px;
+    background-color: var(--toolbar-color);
+    border-left: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+#user-list h4 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+#user-list ul {
+    list-style: none;
+}
+
+#user-list li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.user-color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}

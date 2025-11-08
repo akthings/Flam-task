@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Canvas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header class="toolbar">
+            <div class="tool-group">
+                <button id="brush-tool" class="tool-button active" title="Brush">🎨</button>
+                <button id="eraser-tool" class="tool-button" title="Eraser">🧼</button>
+            </div>
+            
+            <div class="tool-group">
+                <input type="color" id="color-picker" value="#000000" title="Select Color">
+            </div>
+            
+            <div class="tool-group">
+                <label for="stroke-width">Width:</label>
+                <input type="range" id="stroke-width" min="1" max="50" value="5" title="Stroke Width">
+                <span id="width-display">5</span>px
+            </div>
+
+            <div class="tool-group action-group">
+                <button id="undo-button" title="Undo Last Stroke (Global)">↩️ Undo</button>
+            </div>
+
+        </header>
+
+        <main class="canvas-container">
+            <canvas id="drawing-canvas"></canvas>
+            <div id="cursor-layer"></div>
+        </main>
+
+        <aside id="user-list" class="user-list">
+            <h4>Online Users</h4>
+            <ul>
+                </ul>
+        </aside>
+    </div>
+
+    <script src="websocket.js"></script>
+    <script src="canvas.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

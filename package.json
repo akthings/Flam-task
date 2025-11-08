@@ -1,0 +1,25 @@
+{
+  "name": "real-time-collaborative-canvas",
+  "version": "1.0.0",
+  "description": "A multi-user drawing canvas with real-time synchronization.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "keywords": [
+    "websocket",
+    "socket.io",
+    "canvas",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
